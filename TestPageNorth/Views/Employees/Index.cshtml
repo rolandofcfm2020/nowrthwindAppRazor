@@ -1,0 +1,37 @@
+﻿@model TestPageNorth.Models.EmployeesListVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Empleados</h2>
+
+@using (Html.BeginForm("Index", "Employees", FormMethod.Post))
+{
+    <div class="well">
+        @Html.TextBoxFor(m => m.SearchText)
+        <input type="submit" value="Buscar" />
+    </div>
+
+}
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Nombre</th>
+        <th>Telefono </th>
+        <th>Puesto </th>
+    </tr>
+    @if (Model != null && Model.Employees.Count > 0)
+    {
+        foreach (var d in Model.Employees)
+        {
+            <tr>
+                <td>@d.Name </td>
+                <td>@d.Telephone </td>
+                <td>@d.Tittle </td>
+
+            </tr>
+
+        }
+    }
+</table>
