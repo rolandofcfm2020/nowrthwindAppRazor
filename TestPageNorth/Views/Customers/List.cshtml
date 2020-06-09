@@ -1,8 +1,50 @@
-﻿
+﻿@model TestPageNorth.Models.CustomersVM
 @{
     ViewBag.Title = "List";
 }
 
 <h2>Lista de clientes</h2>
 <h5>@ViewBag.Mensaje</h5>
+
+@using (Html.BeginForm("List", "Customers", FormMethod.Post))
+{
+    <div class="well">
+        @Html.TextBoxFor(m=> m.SearchText)
+        <input type="submit" value="Buscar" />
+    </div>
+
+}
+
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>Nombre Cliente</th>
+        <th>Telefono</th>
+        <th>Empresa</th>
+        <th>Dirección</th>
+    </tr>
+    @if (Model != null && Model.Customers.Count > 0)
+    {
+        foreach (var c in Model.Customers)
+        {
+            <tr>
+                <td>
+                    @c.CustomerName
+                </td>
+                <td>
+                    @c.Phone
+                </td>
+                <td>
+                    @c.Company
+                </td>
+                <td>
+                    @c.Address
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
+
+
 
